@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 *
 * @licstart  The following is the entire license notice for the JavaScript code in this file.
@@ -33,24 +34,26 @@ import {ImporterUtils as utils} from '@natlibfi/melinda-record-import-commons';
 start();
 
 async function start() {
+	const logger = utils.createLogger();
+
 	utils.registerSignalHandlers();
 	utils.checkEnv();
 
-	const stopHealthCheckService = utils.startHealthCheckService();
+	const stopHealthCheckService = utils.startHealthCheckService(process.env.HEALTH_CHECK_PORT);
 
 	try {
 		await utils.startImport(callback);
 		stopHealthCheckService();
+		process.exit();
 	} catch (err) {
 		stopHealthCheckService();
-		console.error(err);
-		throw err;
+		logger.error(err);
+		process.exit(-1);
 	}
 
 	async function callback(message) { // eslint-disable-line no-unused-vars
-		return {
-			status: 'CREATED',
-			id: new Date().getTime()
-		};
+		const id = new Date().getTime();
+		logger.debug(`Created a dummy message with id ${id} from the following data: ${message.content.toString()}`);
+		return {id, status: 'CREATED'};
 	}
 }
