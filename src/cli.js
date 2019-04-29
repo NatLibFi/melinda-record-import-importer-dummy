@@ -27,12 +27,10 @@
 *
 */
 
-/* eslint-disable import/default */
-
 import {Importer} from '@natlibfi/melinda-record-import-commons';
-import createImportCallback from './import';
+import importFactory from './import';
 
-const {startImporter} = Importer;
-const importCallback = createImportCallback();
+const {runCLI} = Importer;
+const callback = importFactory();
 
-startImporter(importCallback);
+runCLI({name: 'melinda-record-import-importer-helmet', callback});

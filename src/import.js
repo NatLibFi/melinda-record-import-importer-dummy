@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 *
 * @licstart  The following is the entire license notice for the JavaScript code in this file.
@@ -26,11 +27,9 @@
 *
 */
 
-/* eslint-disable no-undef, max-nested-callbacks, no-unused-expressions */
-
-'use strict';
-
-/* Import {expect} from 'chai';
-import * as testContext from '../src/index';
-
-describe.skip('index'); */
+export default function () {
+	return async () => {
+		const id = new Date().getTime();
+		return {id, status: 'CREATED'};
+	};
+}
