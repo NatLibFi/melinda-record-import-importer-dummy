@@ -30,7 +30,7 @@
 		"watch": "cross-env DEBUG=1 NODE_ENV=debug nodemon --watch src --exec 'npm test'"
 	},
 	"dependencies": {
-		"@natlibfi/melinda-record-import-commons": "^4.2.0"
+		"@natlibfi/melinda-record-import-commons": "^6.0.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.2.0",
