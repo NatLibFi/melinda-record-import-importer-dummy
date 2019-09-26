@@ -27,9 +27,19 @@
 *
 */
 
+import {Utils} from '@natlibfi/melinda-commons';
+import {RECORD_IMPORT_STATE} from '@natlibfi/melinda-record-import-commons';
+
+const {createLogger} = Utils;
+
 export default function () {
-	return async () => {
-		const id = new Date().getTime();
-		return {id, status: 'CREATED'};
+	const Logger = createLogger();
+
+	return async message => {
+		Logger.log('debug', 'Dummy importer! Dosent import records to Melinda');
+		if (message) {
+			Logger.log('debug', `Got data from blob: ${message.fields.routingKey}, record ${message.fields.deliveryTag}`);
+		}
+		return {status: RECORD_IMPORT_STATE.SKIPPED, metadata: {title: 'Dummy record', standardIdentifiers: ` ${message.fields.deliveryTag}-dummy-record`}};
 	};
 }
