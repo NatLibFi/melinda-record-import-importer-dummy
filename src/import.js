@@ -40,6 +40,7 @@ export default function () {
 		if (message) {
 			Logger.log('debug', `Got data from blob: ${message.fields.routingKey}, record ${message.fields.deliveryTag}`);
 		}
+
 		return {status: RECORD_IMPORT_STATE.SKIPPED, metadata: {title: 'Dummy record', standardIdentifiers: ` ${message.fields.deliveryTag}-dummy-record`}};
 	};
 }
