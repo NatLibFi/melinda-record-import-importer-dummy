@@ -36,11 +36,11 @@ export default function () {
 	const Logger = createLogger();
 
 	return async message => {
-		Logger.log('debug', 'Dummy importer! Dosent import records to Melinda');
+		Logger.log('debug', 'Dummy importer! Doesn\'t import records to Melinda');
 		if (message) {
 			Logger.log('debug', `Got data from blob: ${message.fields.routingKey}, record ${message.fields.deliveryTag}`);
 		}
 
-		return {status: RECORD_IMPORT_STATE.SKIPPED, metadata: {title: 'Dummy record', standardIdentifiers: ` ${message.fields.deliveryTag}-dummy-record`}};
+		return {status: RECORD_IMPORT_STATE.SKIPPED, metadata: {title: 'Dummy record', standardIdentifiers: `${message.fields.deliveryTag}-dummy-record`}};
 	};
 }
