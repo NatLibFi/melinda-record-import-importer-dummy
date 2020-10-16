@@ -27,10 +27,8 @@
 *
 */
 
-import {Utils} from '@natlibfi/melinda-commons';
+import {createLogger} from '@natlibfi/melinda-backend-commons';
 import {RECORD_IMPORT_STATE} from '@natlibfi/melinda-record-import-commons';
-
-const {createLogger} = Utils;
 
 export default function () {
 	const Logger = createLogger();
